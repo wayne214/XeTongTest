@@ -15,6 +15,13 @@ import ImageTest from "./ImageTest"
 import BannerTest from "./BannerTest"
 import SwiperTest from "./SwiperTest"
 import RefreshControlTest from "./RefreshControlTest"
+import DateTimeTest from "./DateTimeTest"
+import DateTimePicker from "./DateTimePicker"
+import Picker from "./Picker"
+import DropdownMen from "./Dropdown"
+import PulltoReflesh from "./PulltoReflesh"
+import PulltoRefresh from "./PulltoRefresh"
+import Pull from "./Pull"
 export default class Root extends Component {
     constructor(props){
         super(props);
@@ -46,7 +53,15 @@ export default class Root extends Component {
         //     <View>
         //         <BannerTest/>
         //     </View>
-            <RefreshControlTest/>
+            //<RefreshControlTest/>
+            //<DateTimePicker/
+            //<View style={{flex:1}}>
+
+                    //<DropdownMen/>
+            //</View>
+            //<PulltoReflesh/>
+            //<PulltoRefresh/>
+            <Pull/>
         );
     }
 }

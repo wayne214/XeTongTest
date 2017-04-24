@@ -7,10 +7,18 @@
     "test": "jest"
   },
   "dependencies": {
+    "moment": "^2.18.1",
     "react": "~15.4.1",
     "react-native": "0.42.0",
     "react-native-banner": "^0.1.0",
+    "react-native-datepicker": "^1.4.5",
     "react-native-datetime": "^0.1.2",
+    "react-native-dropdown-menu": "^1.1.0",
+    "react-native-gifted-listview": "0.0.15",
+    "react-native-menu": "^0.20.2",
+    "react-native-modal-datetime-picker": "^4.1.0",
+    "react-native-pull": "^2.0.2",
+    "react-native-pullrefresh-scrollview": "^1.1.1",
     "react-native-swiper": "^1.5.4",
     "react-timer-mixin": "^0.13.3"
   },
