@@ -22,6 +22,9 @@ import DropdownMen from "./Dropdown"
 import PulltoReflesh from "./PulltoReflesh"
 import PulltoRefresh from "./PulltoRefresh"
 import Pull from "./Pull"
+
+import ViewPagerss from "./ViewPagerss"
+
 export default class Root extends Component {
     constructor(props){
         super(props);
@@ -61,7 +64,7 @@ export default class Root extends Component {
             //</View>
             //<PulltoReflesh/>
             //<PulltoRefresh/>
-            <Pull/>
+                <ViewPagerss/>
         );
     }
 }
