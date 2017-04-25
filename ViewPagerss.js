@@ -37,7 +37,6 @@ export default class ViewPagerss extends React.Component {
     }
 
     _renderPage(data, pageID) {
-        alert(pageID)
         return (
 
          <Image
