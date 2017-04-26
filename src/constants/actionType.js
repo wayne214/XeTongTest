@@ -1,0 +1,17 @@
+
+export const GET_DATA_SUCCESS = 'GET_DATA_SUCCESS'
+
+export const ACTION_LOGIN_SUCCESS = 'ACTION_LOGIN_SUCCESS'
+
+export const ACTION_LOGINING = 'ACTION_LOGINING'
+
+export const ACTION_LOGIN_IN_INIT = 'ACTION_LOGIN_IN_INIT'
+
+
+
+
+
+
+
+
+

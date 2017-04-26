@@ -1,91 +1,30 @@
 /**
- * Created by xebest on 2017/3/20.
+ * Created by wayne214 on 2017/3/20.
  */
 import React, { Component } from 'react';
 import {
-    StyleSheet,
-    Text,
-    View
+    AppRegistry
 } from 'react-native';
-import HelloComponents,{name,age,sum} from "./HelloComponents"
-import LifeCycleComponents from "./LifeCycleComponents"
-import RefTest from "./RefTest"
-import StateTest from "./StateTest"
-import ImageTest from "./ImageTest"
-import BannerTest from "./BannerTest"
-import SwiperTest from "./SwiperTest"
-import RefreshControlTest from "./RefreshControlTest"
-import DateTimeTest from "./DateTimeTest"
-import DateTimePicker from "./DateTimePicker"
-import Picker from "./Picker"
-import DropdownMen from "./Dropdown"
-import PulltoReflesh from "./PulltoReflesh"
-import PulltoRefresh from "./PulltoRefresh"
-import Pull from "./Pull"
-import ImagePickers from './ImagePickers'
 
-import ViewPagerss from "./ViewPagerss"
+import { Provider } from 'react-redux';
+import configureStore from './src/store/store'; //获取store
+import App from './app'
+const store = configureStore();
 
 export default class Root extends Component {
     constructor(props){
         super(props);
-        this.state=({
-            result:'',
-            size:'',
-        })
+
 
     }
     render() {
-        var params={name:'小王',age:22,sex:'女'}//扩展运算符
-        var {name,sex}=params;//解构赋值
         return (
-        //     {/*<HelloComponents*/}
-        // {/*name={name}*/}
-        // {/*sex={sex}*/}
-        // {/*/>*/}
-        // <Text
-        //     onPress={()=>{
-        //                 var size=this.refs.ref.getSize();
-        //                 this.setState({
-        //                     size:size,
-        //                 })
-        //             }}
-        // >获取气球的大小：{this.state.size}</Text>
-        // <RefTest
-        // ref="ref"
-        //     />
-        //     <View>
-        //         <BannerTest/>
-        //     </View>
-            //<RefreshControlTest/>
-            //<DateTimePicker/
-            //<View style={{flex:1}}>
-
-                    //<DropdownMen/>
-            //</View>
-            //<PulltoReflesh/>
-            //<PulltoRefresh/>
-                <ImagePickers/>
+            <Provider store={store}>
+                <App/>
+            </Provider>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
-});
 
+AppRegistry.registerComponent('XeTongTest', () => Root);
