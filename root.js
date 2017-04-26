@@ -22,6 +22,7 @@ import DropdownMen from "./Dropdown"
 import PulltoReflesh from "./PulltoReflesh"
 import PulltoRefresh from "./PulltoRefresh"
 import Pull from "./Pull"
+import ImagePickers from './ImagePickers'
 
 import ViewPagerss from "./ViewPagerss"
 
@@ -64,7 +65,7 @@ export default class Root extends Component {
             //</View>
             //<PulltoReflesh/>
             //<PulltoRefresh/>
-                <ViewPagerss/>
+                <ImagePickers/>
         );
     }
 }
