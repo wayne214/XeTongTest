@@ -6,7 +6,9 @@ import {
     StyleSheet,
     Text,
     View,
-    Navigator
+    Navigator,
+    StatusBar,
+    BackAndroid,
 } from 'react-native';
 import HelloComponents,{name,age,sum} from "./HelloComponents"
 import LifeCycleComponents from "./LifeCycleComponents"
@@ -55,6 +57,31 @@ export default class App extends Component {
             />
         );
     }
+
+    componentDidMount () {
+        BackAndroid.addEventListener('hardwareBackPress', this.handleBack);
+    }
+
+    handleBack = () => {
+
+
+        const navigator = this.refs.navigator;
+
+        if (navigator && navigator.getCurrentRoutes().length > 1) {
+
+            navigator.pop();
+
+            return true;
+        }
+        return false;
+    };
+
+    componentWillUnmount () {
+        BackAndroid.removeEventListener('hardwareBackPress', this.handleBack);
+    }
+
+
+
 
     configureScene(route, routeStack) {
         if (route.sceneConfig) { // 有设置场景
