@@ -12,7 +12,7 @@ import {
 import {connect} from 'react-redux';
 import {doLogin} from '../actions/user'
 
-import MainPage from '../../ImagePickers'
+import MainPage from './home/main'
 
 class Login extends Component {
 

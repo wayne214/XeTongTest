@@ -34,6 +34,7 @@ import configureStore from './src/store/store'; //获取store
 import ViewPagerss from "./ViewPagerss"
 
 import Login from './src/containers/login'
+import Main from './src/containers/home/main'
 
 export default class App extends Component {
     constructor(props){
@@ -51,7 +52,7 @@ export default class App extends Component {
 
             //<ImagePickers/>
             <Navigator
-                initialRoute={{id: 'Login', component: Login}}
+                initialRoute={{id: 'Login', component: Main}}
                 configureScene={this.configureScene}
                 renderScene={this.renderScene}
             />

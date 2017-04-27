@@ -12,9 +12,9 @@ import {
     Platform,
 } from 'react-native';
 import DropdownMenu from 'react-native-dropdown-menu'
-import open from './imgs/open.png'
-import close from './imgs/close.png'
-import radiobuton from './imgs/radiobuttonIcon.png'
+import open from './assets/imgs/open.png'
+import close from './assets/imgs/close.png'
+import radiobuton from './assets/imgs/radiobuttonIcon.png'
 var {width} = Dimensions.get('window');
 export default class Dropdown extends Component {
     constructor(props) {

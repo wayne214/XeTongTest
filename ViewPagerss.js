@@ -15,9 +15,9 @@ import {
 import ViewPager from 'react-native-viewpager';
 const {width,height} = Dimensions.get('window');
 const BANNER_IMGS = [
-    require('./imgs/banner_coldline.png'),
-    require('./imgs/banner_pushMsg.png'),
-    require('./imgs/banner_slogan.png'),
+    require('./assets/imgs/banner_coldline.png'),
+    require('./assets/imgs/banner_pushMsg.png'),
+    require('./assets/imgs/banner_slogan.png'),
 ];
 export default class ViewPagerss extends React.Component {
 

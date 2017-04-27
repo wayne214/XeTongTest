@@ -17,11 +17,11 @@ import Menu, {
     MenuOption,
     MenuTrigger
 } from 'react-native-menu';
-import waithandle from './imgs/waithandle.png'
-import  reject from './imgs/reject.png'
-import radioButton from './imgs/radiobuttonIcon.png'
-import open from './imgs/open.png'
-import close from './imgs/close.png'
+import waithandle from './assets/imgs/waithandle.png'
+import  reject from './assets/imgs/reject.png'
+import radioButton from './assets/imgs/radiobuttonIcon.png'
+import open from './assets/imgs/open.png'
+import close from './assets/imgs/close.png'
 var {width} = Dimensions.get('window');
 export default class Picker extends Component{
     constructor(props) {
