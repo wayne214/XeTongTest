@@ -10,11 +10,7 @@ import {
     Image,
     Dimensions
 } from 'react-native';
-import bannerImg1 from '../../../assets/imgs/banner_coldline.png';
-import bannerImg2 from '../../../assets/imgs/banner_pushMsg.png';
-import bannerImg3 from '../../../assets/imgs/banner_slogan.png';
 
-import Swiper from 'react-native-swiper';
 import {
     WHITE_COLOR,
     BLUE_TEXT_COLOR,
@@ -24,59 +20,100 @@ import {
     DEVIDE_LINE_COLOR
 } from '../../constants/staticColor';
 const {width,height} = Dimensions.get('window')
+
+import PicturePage from '../../components/picture/picturepage'
+import ViewPager from 'react-native-viewpager';
+
+import {getPictureIdList,receiverIdList} from '../../actions/picture'
+import * as API from '../../constants/api'
+
+import {ToastMessage} from '../../utils/toast'
 class index extends Component {
     constructor(props) {
         super(props);
-        this.images=[
-            bannerImg1,
-            bannerImg2,
-            bannerImg3,
-        ];
+        this.state={
+            dataSource: new ViewPager.DataSource({
+                    pageHasChanged:(p1, p2) => p1 !== p2
+            })
+        }
+        this.fetchData = this.fetchData.bind(this)
+        this._getPictureIdListCallBack = this._getPictureIdListCallBack.bind(this)
+        this._renderPage = this._renderPage.bind(this)
+    }
+
+    fetchData(getPictureIdListCallBack){
+        this.props.getPictureIdList({},getPictureIdListCallBack)
+    }
+    _getPictureIdListCallBack(idList){
+        console.log('result',idList)
+        this.setState({
+            dataSource:this.state.dataSource.cloneWithPages(idList)
+        })
     }
     componentDidMount() {
-
+        this.fetchData(this._getPictureIdListCallBack)
     }
 
-    renderImg(){
-        var imageViews=[];
-        for(var i=0;i<this.images.length;i++){
-            imageViews.push(
-                <Image
-                    key={i}
-                    style={{alignItems:'center',width:width,height:214}}
-                    source={this.images[i]}
-                />
-            );
-        }
-        return imageViews;
-    }
     render() {
         return <View style={styles.container}>
-            <Swiper height={214}
-                    width={width}
-                    paginationStyle={{bottom:5}}
-                    autoplay={true}
-                    dot={<View style={{width:6,height:6,backgroundColor:WHITE_COLOR,borderRadius:3,marginLeft:3,marginRight:3}}></View>}
-                    activeDot={<View style={{width:6,height:6,backgroundColor:BLUE_TEXT_COLOR,borderRadius:3,marginLeft:3,marginRight:3}}></View>}
-            >
-                {this.renderImg()}
-            </Swiper>
+            <ViewPager
+                style={{flex: 1}}
+                dataSource={this.state.dataSource}
+                renderPage={this._renderPage}
+                renderPageIndicator={false}
+                onBeyondRange={this.onBeyondRange}
+            />
         </View>
+    }
+
+    onBeyondRange(num){
+        if (num){
+            ToastMessage('右拉刷新页面')
+        }else{
+            ToastMessage('左滑进入往期列表')
+        }
+    }
+    _renderPage(data,pageID){
+        console.log('pageiD',data)
+        return(
+            <PicturePage id={data}/>
+        )
+
     }
 }
 
 const styles =StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection:'row'
     }
 })
 
 const mapStateToProps = (state) => {
-    return {}
+    // console.log('pictureIDlIST,,,',state.picture.get('pictureIdList'))
+    return {
+        picture: state.picture,
+        pictureIdList: state.picture.get('pictureIdList')
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {}
+    return {
+        getPictureIdList:(params,getPictureIdListCallBack) => {
+            dispatch(getPictureIdList({
+                url:API.API_GET_PICTURE_ID_LIST,
+                successMsg:'获取图片id列表成功',
+                successCallBack:(response)=>{
+                    console.log('response',response.data)
+                    getPictureIdListCallBack(response.data)
+                    // dispatch(receiverIdList(response.data))
+                },
+                failCallBack:(err)=>{
+
+                }
+            }))
+        }
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(index);

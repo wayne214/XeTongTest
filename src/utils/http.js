@@ -1,5 +1,5 @@
 
-import {ToastMessage} from '../utils/toast'
+import {ToastMessage} from './toast'
 import Global from '../utils/global'
 
 const _fetch = (fetch_promise, timeout=30000) => {
@@ -70,7 +70,57 @@ const post = (params) => {
 	});
 }
 
-export default post
+//export default post
+
+const get = (params) =>{
+	const {url,successMsg} = params
+	const myFetch = fetch(url,{
+		method: 'get',
+		headers:{
+			"Accept": "application/json",
+			"Content-Type": "application/json",
+		}
+	})
+
+    return new Promise((resolve, reject) => {
+        _fetch(myFetch, 30000)
+            .then(response => {
+                if (response.ok){
+                    return response.json();
+                }else{
+                    reject({status: response.status})
+                }
+
+            })
+            .then(responseData=>{
+                console.log('%c responseData is ','color:green', responseData);
+				/* 虽然后台返回的数据正确的收到了，但是这里需要具体的判断成功还是失败，例如以code为标志 code = 200 表示成功*/
+                // if (responseData.code == '200') {
+                //     if (successMsg) {
+                //         ToastMessage(successMsg);
+                //     };
+                //     resolve(responseData)
+                // }else{
+                //     if (responseData && responseData.message) {
+                //         ToastMessage(responseData.message)
+                //     }
+                //     reject(responseData)
+                // }
+                    resolve(responseData)
+            })
+            .catch(error=>{
+                console.log("----http error",error.message);
+                if (error.message === 'timeout') {
+                    ToastMessage('网络超时');
+                }else{
+                    ToastMessage('网络错误？');
+                }
+                reject(error);
+            });
+    });
+}
+
+export default get
 
 
 

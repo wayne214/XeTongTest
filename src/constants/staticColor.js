@@ -2,7 +2,7 @@
  * 颜色以及屏幕尺寸配置文件
  */
 // 主色调
-export const COLOR_MAIN = '#008dcf';
+export const COLOR_MAIN = '#f5f5f5';
 
 export const COLOR_VIEW_BACKGROUND = '#F5F5F5';
 
@@ -21,6 +21,12 @@ export const DEVIDE_LINE_COLOR = '#E8E8E8';
 export const GRAY_TITLE_COLOR = '#E3E4E6';
 
 export const GRAY_TEXT_COLOR = '#999999';
+
+export const GRAY_BORDER_COLOR = '#DADADA';
+
+export const TEXT_GRAY_COLOR = '#79767C';
+
+export const TEXT_COLOR = "#443046"
 
 export const LIGHT_BLACK_TEXT_COLOR = '#333333';
 
