@@ -6,7 +6,8 @@ import {
 	Image,
 	Text,
 	ScrollView,
-    TouchableOpacity
+    TouchableOpacity,
+    InteractionManager
 } from 'react-native';
 import * as StaticColor from '../../constants/staticColor'
 import diary from '../../../assets/img/diary.png'
@@ -39,7 +40,7 @@ class picturepage extends Component {
 		})
 	}
     componentDidMount() {
-		this.fetchData(this._getPictureDetailCallBack)
+        InteractionManager.runAfterInteractions(this.fetchData(this._getPictureDetailCallBack))
     }
 
     render() {

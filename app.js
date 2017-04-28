@@ -30,9 +30,6 @@ import ImagePickers from './ImagePickers'
 import { Provider } from 'react-redux';
 import configureStore from './src/store/store'; //获取store
 
-
-import ViewPagerss from "./ViewPagerss"
-
 import Login from './src/containers/login'
 import Main from './src/containers/home/main'
 
@@ -46,11 +43,7 @@ export default class App extends Component {
 
     }
     render() {
-        var params={name:'小王',age:22,sex:'女'}//扩展运算符
-        var {name,sex}=params;//解构赋值
         return (
-
-            //<ImagePickers/>
             <Navigator
                 initialRoute={{id: 'Login', component: Main}}
                 configureScene={this.configureScene}

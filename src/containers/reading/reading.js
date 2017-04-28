@@ -8,66 +8,85 @@ import {
     Text,
     StyleSheet,
     Image,
-    Dimensions
+    Dimensions,
+    InteractionManager,
+    TouchableOpacity
 } from 'react-native';
-import bannerImg1 from '../../../assets/imgs/banner_coldline.png';
-import bannerImg2 from '../../../assets/imgs/banner_pushMsg.png';
-import bannerImg3 from '../../../assets/imgs/banner_slogan.png';
 
-import Swiper from 'react-native-swiper';
-import {
-    WHITE_COLOR,
-    BLUE_TEXT_COLOR,
-    BLUE_CIRCLE_COLOR,
-    ORANGE_CIRCLE_COLOR,
-    RED_CIRCLE_COLOR,
-    DEVIDE_LINE_COLOR
-} from '../../constants/staticColor';
+import ViewPager from 'react-native-viewpager';
+
 const {width,height} = Dimensions.get('window')
+
+import {getReadingImageList} from '../../actions/reading'
+import * as API from '../../constants/api'
+
+const HEIGHT = 150;
 class reading extends Component {
     constructor(props) {
         super(props);
-        this.images=[
-            bannerImg1,
-            bannerImg2,
-            bannerImg3,
-        ];
-    }
-    componentDidMount() {
-
-    }
-
-    renderImg(){
-        var imageViews=[];
-        for(var i=0;i<this.images.length;i++){
-            imageViews.push(
-                <Image
-                    key={i}
-                    style={{alignItems:'center',width:width,height:214}}
-                    source={this.images[i]}
-                />
-            );
+        this.state={
+            dataSource: new ViewPager.DataSource({
+                pageHasChanged:(p1, p2) => p1 !== p2
+            })
         }
-        return imageViews;
+
+        this.fetchData = this.fetchData.bind(this)
+        this._getReadingBannerImageListCallBack = this._getReadingBannerImageListCallBack.bind(this)
+        this._renderPage = this._renderPage.bind(this)
     }
+
+    fetchData(getReadingBannerImageListCallBack){
+        this.props.getReadingImageList({},getReadingBannerImageListCallBack)
+    }
+    _getReadingBannerImageListCallBack(result){
+        console.log('readingresult',result)
+        this.setState({
+            dataSource:this.state.dataSource.cloneWithPages(result)
+        })
+    }
+
+    componentDidMount() {
+        this.fetchData(this._getReadingBannerImageListCallBack)
+    }
+
     render() {
-        return <View style={styles.container}>
-            <Swiper height={214}
-                    width={width}
-                    paginationStyle={{bottom:5}}
-                    autoplay={true}
-                    dot={<View style={{width:6,height:6,backgroundColor:WHITE_COLOR,borderRadius:3,marginLeft:3,marginRight:3}}></View>}
-                    activeDot={<View style={{width:6,height:6,backgroundColor:BLUE_TEXT_COLOR,borderRadius:3,marginLeft:3,marginRight:3}}></View>}
-            >
-                {this.renderImg()}
-            </Swiper>
-        </View>
+        return (
+            <View style={{flex:1,flexDirection:'column'}}>
+                <View style={{height:150,flexDirection:'row'}}>
+                <ViewPager
+                    style={styles.container}
+                    dataSource={this.state.dataSource}
+                    renderPage={this._renderPage}
+                    isLoop={true}
+                    autoPlay={true}
+                />
+                </View>
+            </View>
+        )
+    }
+
+    _renderPage(data,pageID){
+        return (
+            <TouchableOpacity ACTIVEOPACITY={1} onPress={()=>{this.onPress(data)}} style={{flexDirection:'column'}}>
+                <Image style={styles.image} source={{uri: data.cover}}/>
+            </TouchableOpacity>
+        )
+    }
+
+    onPress(data){
+        alert(data.title)
     }
 }
 
 const styles =StyleSheet.create({
     container: {
-        flex: 1,
+        width: width,
+        height: HEIGHT,
+    },
+    image: {
+        width: width,
+        height: HEIGHT,
+        resizeMode: 'cover'
     }
 })
 
@@ -76,7 +95,17 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {}
+    return {
+        getReadingImageList:(params,getReadingBannerImageListCallBack) =>{
+            dispatch(getReadingImageList({
+                url:API.API_REANDING_BANNER_IMAGES,
+                successCallBack:(response) =>{
+                    getReadingBannerImageListCallBack(response.data)
+                }
+
+            }))
+        }
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(reading);

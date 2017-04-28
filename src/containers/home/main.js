@@ -42,7 +42,7 @@ export default class Home extends Component{
             </View>
         );
         var readingView=(
-            <View style={[styles.flex,styles.center,{backgroundColor: StaticColor.COLOR_MAIN}]}>
+            <View style={[styles.flex,{backgroundColor: StaticColor.COLOR_MAIN}]}>
                 <Reading/>
             </View>
         );
