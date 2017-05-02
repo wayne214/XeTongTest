@@ -13,7 +13,6 @@
     "react-native": "0.42.0",
     "react-native-banner": "^0.1.0",
     "react-native-datepicker": "^1.4.5",
-    "react-native-datetime": "^0.1.2",
     "react-native-dropdown-menu": "^1.1.0",
     "react-native-gifted-listview": "0.0.15",
     "react-native-image-crop-picker": "^0.13.0",
