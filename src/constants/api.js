@@ -4,7 +4,9 @@ export const API_GET_PICTURE_ID_LIST =  HOST + '/hp/idlist/0';
 
 export const API_PICTURE_DETAIL = HOST + `/hp/detail/`;
 
-export const API_REANDING_BANNER_IMAGES = HOST + `/reading/carousel`;
+export const API_READING_BANNER_IMAGES = HOST + `/reading/carousel`;
 
+export const API_READING_ARTICLE_LIST = HOST + `/reading/index`;
 
+export const API_READING_IMAGE_DETAIL = HOST + `/reading/carousel/`;
 

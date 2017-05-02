@@ -76,7 +76,7 @@ export default class Router {
 	}
 
 	toLogin() {
-		this.push(LOGIN_PAGE, true);
+		// this.push(LOGIN_PAGE, true);
 	}
 
 	redirect(indicat, params) {

@@ -8,13 +8,13 @@ import {
 } from 'react-native';
 import styles from '../../../assets/css/main';
 import Home from '../../containers/home/home';
-import GoodsSource from '../../containers/goodsSource/goodsSource';
-import Order from '../../containers/order/order';
-import Mine from '../../containers/mine/mine'
+import Reading from '../../containers/reading/reading';
+import Music from '../../containers/music/music';
+import Movie from '../../containers/movie/movie'
 
 // import BadgeViewIcon from '../../../assets/img/message_num_bg.png';
 
-export default class Tabar extends Component {
+export default class TabBar extends Component {
 
 	constructor(props) {
 	  super(props);
@@ -56,12 +56,12 @@ export default class Tabar extends Component {
 		switch(key) {
 			case 'home':
 				return (<Home { ...this.props } />);
-			case 'goodsSource':
-				return (<GoodsSource { ...this.props } />);
-			case 'order':
-				return (<Order { ...this.props } />);
-			case 'mine':
-				return (<Mine { ...this.props } />);
+			case 'reading':
+				return (<Reading { ...this.props } />);
+			case 'music':
+				return (<Music { ...this.props } />);
+			case 'movie':
+				return (<Movie { ...this.props } />);
 			default:
 				return (<Home { ...this.props } />);
 		}

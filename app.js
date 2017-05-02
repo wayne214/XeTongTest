@@ -10,45 +10,30 @@ import {
     StatusBar,
     BackAndroid,
 } from 'react-native';
-import HelloComponents,{name,age,sum} from "./HelloComponents"
-import LifeCycleComponents from "./LifeCycleComponents"
-import RefTest from "./RefTest"
-import StateTest from "./StateTest"
-import ImageTest from "./ImageTest"
-import BannerTest from "./BannerTest"
-import SwiperTest from "./SwiperTest"
-import RefreshControlTest from "./RefreshControlTest"
-import DateTimeTest from "./DateTimeTest"
-import DateTimePicker from "./DateTimePicker"
-import Picker from "./Picker"
-import DropdownMen from "./Dropdown"
-import PulltoReflesh from "./PulltoReflesh"
-import PulltoRefresh from "./PulltoRefresh"
-import Pull from "./Pull"
-import ImagePickers from './ImagePickers'
-
-import { Provider } from 'react-redux';
-import configureStore from './src/store/store'; //获取store
 
 import Login from './src/containers/login'
-import Main from './src/containers/home/main'
+import Main from './src/containers/app/main'
+import Router from './src/constants/router'
 
 export default class App extends Component {
     constructor(props){
         super(props);
-        this.state=({
-            result:'',
-            size:'',
-        })
+        this.renderScene = this.renderScene.bind(this)
 
     }
     render() {
         return (
+        <View style={{flex: 1}}>
+            <StatusBar
+                backgroundColor='#2562b4'
+                barStyle='light-content'/>
             <Navigator
-                initialRoute={{id: 'Login', component: Main}}
+                ref='navigator'
+                initialRoute={{name: 'Login', component: Main}}
                 configureScene={this.configureScene}
                 renderScene={this.renderScene}
             />
+        </View>
         );
     }
 
@@ -78,32 +63,22 @@ export default class App extends Component {
 
 
     configureScene(route, routeStack) {
-        if (route.sceneConfig) { // 有设置场景
-            return route.sceneConfig;
+        if (route.type === 'bottom') { // 有设置场景
+            return Navigator.SceneConfigs.FloatFromBottom;//底部弹出
         }
         return Navigator.SceneConfigs.PushFromRight; // 默认，右侧弹出
     }
 
     renderScene(route, navigator) {
-        return <route.component {...route.passProps} navigator= {navigator}/>;
+        // return <route.component {...route.passProps} navigator= {navigator}/>;
+        this.router = this.router || new Router(navigator);
+        const Component = route.component;
+        return (
+            <Component
+                route={route}
+                router={this.router}
+                navigator={navigator}
+            />
+        )
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
-});

@@ -12,7 +12,7 @@ import {
 import {connect} from 'react-redux';
 import {doLogin} from '../actions/user'
 
-import MainPage from './home/main'
+import MainPage from './app/main'
 
 class Login extends Component {
 

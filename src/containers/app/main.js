@@ -4,7 +4,7 @@ import Immutable from 'immutable';
 import { View } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 import TabBar from '../../components/app/tabBar';
-import { changeTabBarAction } from '../../action/app';
+import { changeTabBarAction } from '../../actions/app';
 import commonStyle from '../../../assets/css/common';
 // import Upgrade from '../../components/app/upgrade';
 
@@ -41,7 +41,6 @@ function mapStateToProps(state) {
 	return {
 		routes: app.get('routes'),
 		currentTab: app.get('currentTab'),
-		// upgrade: app.get('upgrade'),
 	};
 }
 

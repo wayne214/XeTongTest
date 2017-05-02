@@ -11,14 +11,6 @@ import {
     Dimensions
 } from 'react-native';
 
-import {
-    WHITE_COLOR,
-    BLUE_TEXT_COLOR,
-    BLUE_CIRCLE_COLOR,
-    ORANGE_CIRCLE_COLOR,
-    RED_CIRCLE_COLOR,
-    DEVIDE_LINE_COLOR
-} from '../../constants/staticColor';
 const {width,height} = Dimensions.get('window')
 
 import PicturePage from '../../components/picture/picturepage'
@@ -67,7 +59,7 @@ class index extends Component {
     }
 
     onBeyondRange(num){
-        if (num){
+        if (num < 0){
             ToastMessage('右拉刷新页面')
         }else{
             ToastMessage('左滑进入往期列表')

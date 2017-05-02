@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
     View,
-    Text,
     StyleSheet,
     Image,
     Dimensions,
@@ -19,6 +18,8 @@ const {width,height} = Dimensions.get('window')
 
 import {getReadingImageList} from '../../actions/reading'
 import * as API from '../../constants/api'
+import ReadingBottomViewPager from './readingBottomViewPager'
+import * as RouteType from '../../constants/routeType'
 
 const HEIGHT = 150;
 class reading extends Component {
@@ -61,6 +62,9 @@ class reading extends Component {
                     autoPlay={true}
                 />
                 </View>
+                <View style={{flex: 1}}>
+                    <ReadingBottomViewPager/>
+                </View>
             </View>
         )
     }
@@ -74,7 +78,10 @@ class reading extends Component {
     }
 
     onPress(data){
-        alert(data.title)
+
+        this.props.router.redirect(RouteType.READING_CAROUSEL_DETAIL,{
+            readingCarousel:data
+        })
     }
 }
 
@@ -98,7 +105,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getReadingImageList:(params,getReadingBannerImageListCallBack) =>{
             dispatch(getReadingImageList({
-                url:API.API_REANDING_BANNER_IMAGES,
+                url:API.API_READING_BANNER_IMAGES,
                 successCallBack:(response) =>{
                     getReadingBannerImageListCallBack(response.data)
                 }

@@ -22,5 +22,24 @@ export const getReadingImageList = ({...params}) =>{
 // }
 
 
+export const getReadingArticleList = ({...params}) =>{
+    return dispatch =>{
+        return Http({...params}).then(response => {
+            params.successCallBack && params.successCallBack(response)
+        },err =>{
+            params.failCallBack && params.failCallBack(err)
+        }).catch(error => console.log(error))
+    }
+}
 
+
+export const getReadingImageDetail = ({...params}) =>{
+    return dispatch =>{
+        return Http({...params}).then(response => {
+            params.successCallBack && params.successCallBack(response)
+        },err =>{
+            params.failCallBack && params.failCallBack(err)
+        }).catch(error => console.log(error))
+    }
+}
 

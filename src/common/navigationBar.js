@@ -10,7 +10,7 @@ import {
 	Alert
 } from 'react-native';
 
-import backIcon from '../../assets/img/back.png';
+import backIcon from '../../assets/imgs/back.png';
 
 export default class NavigatorBar extends React.Component {
 	constructor(props) {
