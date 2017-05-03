@@ -3,28 +3,32 @@ import { connect } from 'react-redux';
 import {
 	View,
 	Text,
-	StyleSheet
+	StyleSheet,
+	TouchableHighlight,
 } from 'react-native';
-
 class Music extends Component {
+	_car = "";
 	constructor(props) {
 	  super(props);
+
 	}
+
 	componentDidMount() {
 
 	}
+
 	render() {
-		return <View style={styles.container}>
-			<Text style={{fontSize:20,color:'blue'}}>音乐</Text>
-		</View>
+
+		return (
+			<View style={{paddingTop:20,paddingLeft:10,paddingRight:10}}>
+				<Text>音乐</Text>
+			</View>
+		)
 	}
 }
 
 const styles =StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: 'orange'
-	}
+
 })
 
 const mapStateToProps = (state) => {
