@@ -26,7 +26,14 @@ export const GRAY_BORDER_COLOR = '#DADADA';
 
 export const TEXT_GRAY_COLOR = '#79767C';
 
-export const TEXT_COLOR = "#443046"
+export const TEXT_COLOR = "#443046";
+
+export const LIGHT_GRAY_COLOR = "#cccccc44";
+
+export const GRAY_COLOR = "#DADADA";
+
+export const LIGHT_BLUE_COLOR = "#5CACEE";
+
 
 export const LIGHT_BLACK_TEXT_COLOR = '#333333';
 

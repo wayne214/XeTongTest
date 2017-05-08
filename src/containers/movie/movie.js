@@ -23,7 +23,9 @@ class Movie extends Component {
 const styles =StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'gray'
+		backgroundColor: 'pink',
+		justifyContent: 'center',
+		alignItems: 'center'
 	}
 })
 

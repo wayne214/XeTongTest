@@ -10,3 +10,7 @@ export const API_READING_ARTICLE_LIST = HOST + `/reading/index`;
 
 export const API_READING_IMAGE_DETAIL = HOST + `/reading/carousel/`;
 
+export const API_MUSIC_ID_LIST = HOST + `/music/idlist/0`;
+
+export const API_MUSIC_DETAIL_PAGE = HOST + `/music/detail/`;
+

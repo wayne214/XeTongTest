@@ -11,9 +11,9 @@ import {
     BackAndroid,
 } from 'react-native';
 
-import Login from './src/containers/login'
-import Main from './src/containers/app/main'
-import Router from './src/constants/router'
+import Login from './login'
+import Main from './app/main'
+import Router from '../constants/router'
 
 export default class App extends Component {
     constructor(props){

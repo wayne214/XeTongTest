@@ -11,7 +11,7 @@ import {
   Platform,
   Animated
 } from 'react-native';
-import Style from './style';
+import Style from './test/style';
 import Moment from 'moment';
 
 const FORMATS = {
@@ -374,7 +374,7 @@ DatePicker.defaultProps = {
   duration: 300,
   confirmBtnText: '确定',
   cancelBtnText: '取消',
-  iconSource: require('./date_icon.png'),
+  iconSource: require('./test/date_icon.png'),
   customStyles: {},
 
   // whether or not show the icon

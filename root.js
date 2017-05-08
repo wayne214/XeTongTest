@@ -8,7 +8,7 @@ import {
 
 import { Provider } from 'react-redux';
 import configureStore from './src/store/store'; //获取store
-import App from './app'
+import App from './src/containers/app'
 const store = configureStore();
 
 export default class Root extends Component {
