@@ -2,21 +2,32 @@
 import {ToastMessage} from './toast'
 import Global from '../utils/global'
 
+/**
+ * fetchRequest超时处理封装
+ * 让fetch也可以timeout
+ *  timeout不是请求连接超时的含义，它表示请求的response时间，包括请求的连接、服务器处理及服务器响应回来的时间
+ * fetch的timeout即使超时发生了，本次请求也不会被abort丢弃掉，它在后台仍然会发送到服务器端，只是本次请求的响应内容被丢弃而已
+ * @param {Promise} fetch_promise    fetch请求返回的Promise
+ * @param {number} [timeout=10000]   单位：毫秒，这里设置默认超时时间为10秒
+ * @return 返回Promise
+ */
 const _fetch = (fetch_promise, timeout=30000) => {
   let abort_fn = null;
+  // 这是一个可以被reject的promise
   const abort_promise = new Promise((resolve, reject) => {
 		abort_fn = () => {
-      const err = new Error('timeout')
+      const err = new Error('timeout');
 		  reject(err);
 		}
-  })
+  });
+		// 这里使用Promise.race,以最快resolve或reject的结果来传入后续绑定的回调
 	const abortable_promise = Promise.race([fetch_promise,abort_promise]);
   setTimeout(()=>{
 		abort_fn()
   }, timeout)
 	return abortable_promise;
 
-}
+};
 
 const post = (params) => {
   const {url, successMsg} = params
