@@ -5,7 +5,6 @@ import {
 	Text,
 	StyleSheet
 } from 'react-native';
-
 class Movie extends Component {
 	constructor(props) {
 	  super(props);
@@ -24,8 +23,6 @@ const styles =StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: 'pink',
-		justifyContent: 'center',
-		alignItems: 'center'
 	}
 })
 
