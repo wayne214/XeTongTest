@@ -6,12 +6,14 @@ import app from './app'
 import user from './user'
 import picture from './picture'
 import reading from './reading'
+import movie from './movie'
 
 const rootReducer = combineReducers({
     app,
     user,
     picture,
     reading,
+    movie,
 });
 
 export default rootReducer;

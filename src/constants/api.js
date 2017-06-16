@@ -14,3 +14,8 @@ export const API_MUSIC_ID_LIST = HOST + `/music/idlist/0`;
 
 export const API_MUSIC_DETAIL_PAGE = HOST + `/music/detail/`;
 
+
+/** 电影 **/
+export const API_MOVIE_LIST = HOST + `/movie/list/`;
+export const API_MOVIE_DETAIL = HOST + `/movie/detail/`;
+
