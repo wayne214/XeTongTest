@@ -13,6 +13,7 @@ import search from '../../../assets/img/search_min.png'
 import ViewPager from 'react-native-viewpager';
 import MusicDetailPage  from '../../components/music/musicDetailPage'
 import * as API from '../../constants/api'
+import * as RouteType from '../../constants/routeType';
 
 import {getMusicIdList} from '../../actions/music'
 class Music extends Component {
@@ -43,6 +44,10 @@ class Music extends Component {
 		InteractionManager.runAfterInteractions(this.fetchDate(this._getMusicIdListCallBack))
 	}
 
+    goToPersonCenter(){
+    		this.props.router.redirect(RouteType.PERSONAL_CENTER)
+		}
+
 	render() {
 		const {navigator} = this.props;
 		return (
@@ -52,7 +57,13 @@ class Music extends Component {
 					title={'音乐'}
 					navigator={ navigator }
 					hiddenBackIcon={true}
-					leftButtonConfig={{type:'image',image: center}}
+					leftButtonConfig={{
+						  type:'image',
+							image: center,
+							onClick: () => {
+						  		this.goToPersonCenter();
+							}
+					}}
 					rightButtonConfig={{type:'image',image: search}}
 				/>
 				<View style={{flexDirection:'row',flex: 1}}>

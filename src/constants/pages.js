@@ -37,14 +37,23 @@ const READING_QUESTION_DETAIL = {
     component: ReadingQuestionDetail
 }
 
+import Mine from '../containers/mine/mine'
+const PERSONAL_CENTER = {
+    key: RouteType.PERSONAL_CENTER,
+    title: '个人中心',
+    component: Mine,
+}
+
 
 
 const Pages = [
-	LOGIN_PAGE,
+	  LOGIN_PAGE,
     READING_CAROUSEL_DETAIL,
     READING_ESSAY_DETAIL,
     READING_SERIAL_DETAIL,
     READING_QUESTION_DETAIL,
+    PERSONAL_CENTER,
+
 ]
 
 export default Pages

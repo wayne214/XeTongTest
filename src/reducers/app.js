@@ -49,15 +49,15 @@ const initState = Immutable.fromJS({
             renderIcon: music,
             renderSelectedIcon: musicActive,
         },
-        {
-            title: '电影',
-            key: 'movie',
-            badgeCount: 0,
-            component: <Movie />,
-            withStatusBar: false,
-            renderIcon: move,
-            renderSelectedIcon: moveActive,
-        }
+        // {
+        //     title: '电影',
+        //     key: 'movie',
+        //     badgeCount: 0,
+        //     component: <Movie />,
+        //     withStatusBar: false,
+        //     renderIcon: move,
+        //     renderSelectedIcon: moveActive,
+        // }
     ],
 
 })
