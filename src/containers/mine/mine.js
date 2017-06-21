@@ -9,6 +9,9 @@ import {
     Platform,
 } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
+import CountDownTimer from 'react_native_countdowntimer';
+
+
 import NavigationBar from '../../common/navigationBar';
 
 // 配置弹出的信息
@@ -102,6 +105,21 @@ class Mine extends Component {
 								source={this.state.avatarSource}
 							/>
 							<Text>Welcome</Text>
+                <CountDownTimer
+                    //date={new Date(parseInt(endTime))}
+                    date="2017-11-28T00:00:00+00:00"
+                    days={{plural: 'Days ',singular: 'day '}}
+                    hours=':'
+                    mins=':'
+                    segs=''
+
+                    // daysStyle={styles.time}
+                    // hoursStyle={styles.time}
+                    // minsStyle={styles.time}
+                    // secsStyle={styles.time}
+                    // firstColonStyle={styles.colon}
+                    // secondColonStyle={styles.colon}
+                />
 						</View>
 
 
