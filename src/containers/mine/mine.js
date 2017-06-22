@@ -107,7 +107,7 @@ class Mine extends Component {
 							<Text>Welcome</Text>
                 <CountDownTimer
                     //date={new Date(parseInt(endTime))}
-                    date="2017-06-23T00:00:00+00:00"
+                    date="2017-06-23 00:00:0" // 传递时间为标准格式
                     days={{plural: 'Days ',singular: 'day '}}
                     hours=':'
                     mins=':'
