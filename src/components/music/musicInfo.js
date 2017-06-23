@@ -1,5 +1,5 @@
 /**
- * Created by lipeiwei on 16/10/10.
+ * Created by wayne on 16/10/10.
  */
 
 import React, {PropTypes} from 'react';
@@ -13,7 +13,7 @@ import {
   Dimensions
 } from 'react-native';
 import * as StaticColor from '../../constants/staticColor';
-import {getNavigator} from '../route';
+// import {getNavigator} from '../route';
 
 const styles = StyleSheet.create({
   container: {
@@ -131,11 +131,12 @@ class MusicInfo extends React.Component {
 
   renderMusicStory() {
     const {musicDetailData} = this.props;
+    console.log('storyAuthor',musicDetailData);
     return (
       <View style={styles.storyContainer}>
         <Text style={styles.titleText}>{musicDetailData.story_title}</Text>
-        <Text style={styles.authorNameText}>{musicDetailData.story_author.user_name}</Text>
-        <Text style={styles.commonText}>{musicDetailData.story}</Text>
+        <Text style={styles.authorNameText}>{musicDetailData.title}</Text>
+        <Text style={styles.commonText}>{musicDetailData.lyric}</Text>
 
       </View>
     );

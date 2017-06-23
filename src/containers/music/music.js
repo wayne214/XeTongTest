@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {
-	View,
-	Text,
-	StyleSheet,
-	TouchableHighlight,
-	InteractionManager
+    View,
+    Text,
+    StyleSheet,
+    TouchableHighlight,
+    InteractionManager
 } from 'react-native';
 import NavigationBar from '../../common/navigationBar'
 import center from '../../../assets/img/individual_center.png'
@@ -17,8 +17,8 @@ import * as RouteType from '../../constants/routeType';
 
 import {getMusicIdList} from '../../actions/music'
 class Music extends Component {
-	constructor(props) {
-	  super(props);
+    constructor(props) {
+        super(props);
         this.state = {
             dataSource: new ViewPager.DataSource({
                 pageHasChanged: (p1, p2) => p1 !== p2,
@@ -26,90 +26,90 @@ class Music extends Component {
         };
 
         this.fetchDate = this.fetchDate.bind(this)
-		this._getMusicIdListCallBack = this._getMusicIdListCallBack.bind(this)
+        this._getMusicIdListCallBack = this._getMusicIdListCallBack.bind(this)
         this._renderPage = this._renderPage.bind(this)
-	}
+    }
 
-	fetchDate(getMusicIdListCallBack){
-		this.props.getMusicIdList({},getMusicIdListCallBack)
-	}
+    fetchDate(getMusicIdListCallBack) {
+        this.props.getMusicIdList({}, getMusicIdListCallBack)
+    }
 
-    _getMusicIdListCallBack(result){
-		this.setState({
-			dataSource:this.state.dataSource.cloneWithPages(result)
+    _getMusicIdListCallBack(result) {
+        this.setState({
+            dataSource: this.state.dataSource.cloneWithPages(result)
         })
-	}
+    }
 
-	componentDidMount() {
-		InteractionManager.runAfterInteractions(this.fetchDate(this._getMusicIdListCallBack))
-	}
+    componentDidMount() {
+        InteractionManager.runAfterInteractions(this.fetchDate(this._getMusicIdListCallBack))
+    }
 
-    goToPersonCenter(){
-    		this.props.router.redirect(RouteType.PERSONAL_CENTER)
-		}
+    goToPersonCenter() {
+        this.props.router.redirect(RouteType.PERSONAL_CENTER)
+    }
 
-	render() {
-		const {navigator} = this.props;
-		return (
-			<View style={styles.container}>
-				<NavigationBar
-					style={{backgroundColor:'pink'}}
-					title={'音乐'}
-					navigator={ navigator }
-					hiddenBackIcon={true}
-					leftButtonConfig={{
-						  type:'image',
-							image: center,
-							onClick: () => {
-						  		this.goToPersonCenter();
-							}
-					}}
-					rightButtonConfig={{type:'image',image: search}}
-				/>
-				<View style={{flexDirection:'row',flex: 1}}>
-					<ViewPager
-						style={{flex: 1}}
-						dataSource={this.state.dataSource}
-						renderPage={this._renderPage}
-						renderPageIndicator={false}
-					/>
-				</View>
-
-			</View>
-		)
-	}
-
-    _renderPage(data,pageID){
+    render() {
+        const {navigator} = this.props;
         return (
-			<MusicDetailPage id={data}/>
+            <View style={styles.container}>
+                <NavigationBar
+                    style={{backgroundColor: 'pink'}}
+                    title={'音乐'}
+                    navigator={ navigator }
+                    hiddenBackIcon={true}
+                    leftButtonConfig={{
+                        type: 'image',
+                        image: center,
+                        onClick: () => {
+                            this.goToPersonCenter();
+                        }
+                    }}
+                    rightButtonConfig={{type: 'image', image: search}}
+                />
+                <View style={{flexDirection: 'row', flex: 1}}>
+                    <ViewPager
+                        style={{flex: 1}}
+                        dataSource={this.state.dataSource}
+                        renderPage={this._renderPage}
+                        renderPageIndicator={false}
+                    />
+                </View>
+
+            </View>
+        )
+    }
+
+    _renderPage(data, pageID) {
+        return (
+            <MusicDetailPage id={data}/>
         )
     }
 
 }
 
-const styles =StyleSheet.create({
-	container:{
-		flex: 1
-	}
-})
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+});
 
 const mapStateToProps = (state) => {
-	return {}
-}
+    return {}
+};
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		getMusicIdList:(params,getMusicIdListCallBack) => {
-			dispatch(getMusicIdList({
-				url:API.API_MUSIC_ID_LIST,
-                successCallBack:(response) =>{
+    return {
+        getMusicIdList: (params, getMusicIdListCallBack) => {
+            dispatch(getMusicIdList({
+                url: API.API_MUSIC_ID_LIST,
+                successCallBack: (response) => {
                     getMusicIdListCallBack(response.data)
                 }
-			}))
+            }))
 
-	}
-	}
-}
+        }
+    }
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Music);
 
