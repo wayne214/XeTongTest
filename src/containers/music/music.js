@@ -53,7 +53,7 @@ class Music extends Component {
         return (
             <View style={styles.container}>
                 <NavigationBar
-                    style={{backgroundColor: 'pink'}}
+                    style={{backgroundColor: '#3f7fff'}}
                     title={'音乐'}
                     navigator={ navigator }
                     hiddenBackIcon={true}

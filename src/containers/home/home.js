@@ -10,6 +10,7 @@ import {
     Image,
     Dimensions
 } from 'react-native';
+import NavigationBar from '../../common/navigationBar'
 
 const {width,height} = Dimensions.get('window')
 
@@ -47,15 +48,25 @@ class index extends Component {
     }
 
     render() {
-        return <View style={styles.container}>
-            <ViewPager
-                style={{flex: 1}}
-                dataSource={this.state.dataSource}
-                renderPage={this._renderPage}
-                renderPageIndicator={false}
-                onBeyondRange={this.onBeyondRange}
-            />
-        </View>
+        return (
+                <View style={{flex: 1}}>
+                    <NavigationBar
+                        style={{backgroundColor: '#3f7fff'}}
+                        title={'首页'}
+                        navigator={ navigator }
+                        leftButtonHidden={true}
+                    />
+                    <View style={styles.container}>
+                        <ViewPager
+                            style={{flex: 1}}
+                            dataSource={this.state.dataSource}
+                            renderPage={this._renderPage}
+                            renderPageIndicator={false}
+                            onBeyondRange={this.onBeyondRange}
+                        />
+                    </View>
+                </View>
+            )
     }
 
     onBeyondRange(num){

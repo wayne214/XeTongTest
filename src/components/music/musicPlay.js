@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         padding: 8,
         borderWidth: 1,
         borderColor: StaticColor.GRAY_COLOR,
-        backgroundColor: 'white'
+        backgroundColor: '#baff96'
     },
     leftContainer: {
         justifyContent: 'space-between',
@@ -122,7 +122,8 @@ class MusicPlay extends React.Component {
                     <Image style={styles.xiamiImage}
                            source={musicDetailData.platform == 1 ? require('../../../assets/img/xiami_right.png') : require('../../../assets/img/white.png')}
                            resizeMode="contain"/>
-                    <TouchableOpacity onPress={this.onMediaPressed}>
+                    <TouchableOpacity onPress={() => { }//this.onMediaPressed
+                    }>
                         {this.renderPlayButton()}
                     </TouchableOpacity>
                     <Text style={styles.dateText}>{dateStr}</Text>
