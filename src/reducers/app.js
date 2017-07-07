@@ -50,7 +50,7 @@ const initState = Immutable.fromJS({
             renderSelectedIcon: musicActive,
         },
         {
-            title: '我的',
+            title: '电影',
             key: 'movie',
             badgeCount: 0,
             component: <Movie />,
