@@ -111,21 +111,25 @@ class Movie extends Component {
 	componentDidMount() {
 			this.fetchData(0, this._getMovieListCallBack);
 	}
+
+// <GiftedListView
+// initialListSize={20}
+// pageSize={20}
+// refreshing={this.state.refreshing}
+// hasMore={this.state.hasMore}
+// fetchLatestData={this.fetchLatestData}
+// fetchMoreData={this.fetchMoreData(this._getMovieListCallBack)}
+// dataSource={dataSource}
+// renderRow={this.renderRow}
+// renderSeparator={this.renderSeparator}
+// />
 	render() {
       //pageSize代表一个event loop绘制多少个row
       let dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(this.state.movieList);
       return (
-				<GiftedListView
-					initialListSize={20}
-					pageSize={20}
-					refreshing={this.state.refreshing}
-					hasMore={this.state.hasMore}
-					fetchLatestData={this.fetchLatestData}
-					fetchMoreData={this.fetchMoreData(this._getMovieListCallBack)}
-					dataSource={dataSource}
-					renderRow={this.renderRow}
-					renderSeparator={this.renderSeparator}
-				/>
+          <View>
+              <Text>welcome</Text>
+          </View>
       );
 	}
 }
