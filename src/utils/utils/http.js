@@ -114,15 +114,14 @@ const post = (params) => {
                     };
                     resolve(responseData)
                 } else {
-
-                    if (responseData.status == '404' && responseData.path == '/errorAuth') {
+                    if (responseData.code == '504') {
                         Storage.save('token', '');
                         global.token = '';
                         Storage.remove('userInfo');
                         Storage.remove('setCarSuccessFlag');
                         Storage.remove('plateNumber');
                         JPushModule.setAlias('', this.success, this.fail);
-                        resetToLoginEmit.restToLogin();
+                        resetToLoginEmit.restToLogin(responseData.message);
                     } else {
                         if (responseData && responseData.message) {
                             Toast.showShortCenter(responseData.message)

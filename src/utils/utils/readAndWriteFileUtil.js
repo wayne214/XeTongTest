@@ -7,12 +7,13 @@ import RNFS from 'react-native-fs'; // 导入
 import moment from 'moment';
 import Storage from './storage';
 
-const currentData = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+// const currentData = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
 const path = RNFS.DocumentDirectoryPath + '/logger.txt'; // 文件路径
 const destPath = RNFS.DocumentDirectoryPath + '/abc/logger.txt'; // 文件路径
 const platForm = Platform.OS === 'ios' ? 'IOS' : 'Android';
 const deviceModels = DeviceInfo.getModel();
 const appName = '司机APP';
+const version = DeviceInfo.getVersion();
 
 let userID = '';
 let userNAME = '';
@@ -40,6 +41,7 @@ class readAndWriteFileUtil {
      * page: 页面信息
      * */
     writeFile(action, city, gpsX, gpsY, phoneNum, prov, region, useTime, userId, userName, pageName) {
+        const currentData = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
         const cityValue = typeof (city) === 'undefined' ? '' : city; // 市
         const gpsXValue = typeof (gpsX) === 'undefined' ? 0 : gpsX; // 纬度
         const gpsYValue = typeof (gpsY) === 'undefined' ? 0 : gpsY; // 经度
@@ -48,9 +50,9 @@ class readAndWriteFileUtil {
         Storage.get('plateNumber').then((value) => {
             plateNumber = value;
         });
-        var content={'action':action, 'city': cityValue , 'gpsX': gpsXValue, 'gpsY': gpsYValue, 'phoneNum': phoneNum, 'prov': provValue,
+        var content={'action':action, 'city': cityValue , 'lat': gpsXValue, 'lng': gpsYValue, 'phoneNum': phoneNum, 'prov': provValue,
             'region': regionValue, 'time': currentData, 'useTime': useTime, 'userId': userId, 'userName': userName,
-            'app': appName, 'platform': platForm, 'deviceModel' : deviceModels, 'page' : pageName, 'plateNumber' : plateNumber};
+            'app': appName, 'platform': platForm, 'deviceModel' : deviceModels, 'page' : pageName, 'plateNumber' : plateNumber, 'version' : version};
         var jsonarr = JSON.stringify(content);
         RNFS.writeFile(path, jsonarr + '\n', 'utf8')
             .then((success) => {
@@ -62,6 +64,7 @@ class readAndWriteFileUtil {
     }
     // 向文件中添加内容
     appendFile(action, city, gpsX, gpsY, prov, region, useTime, pageName) {
+        const currentData = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
         const cityValue = typeof (city) === 'undefined' ? '' : city; // 市
         const gpsXValue = typeof (gpsX) === 'undefined' ? 0 : gpsX; // 纬度
         const gpsYValue = typeof (gpsY) === 'undefined' ? 0 : gpsY; // 经度
@@ -75,9 +78,9 @@ class readAndWriteFileUtil {
                     userPhone = value.result.phone;
                     Storage.get('plateNumber').then((plateNum) => {
                         plateNumber = plateNum;
-                        var content={'action':action, 'city': cityValue , 'gpsX': gpsXValue, 'gpsY': gpsYValue, 'phoneNum': userPhone, 'prov': provValue,
+                        var content={'action':action, 'city': cityValue , 'lat': gpsXValue, 'lng': gpsYValue, 'phoneNum': userPhone, 'prov': provValue,
                             'region': regionValue, 'time': currentData, 'useTime': useTime, 'userId': userID, 'userName': userNAME,
-                            'app': appName, 'platform': platForm, 'deviceModel' : deviceModels, 'page' : pageName, 'plateNumber': plateNumber };
+                            'app': appName, 'platform': platForm, 'deviceModel' : deviceModels, 'page' : pageName, 'plateNumber': plateNumber, 'version': version };
                         var jsonarr = JSON.stringify(content);
                         RNFS.appendFile(path, jsonarr + '\n', 'utf8')
                             .then((success) => {

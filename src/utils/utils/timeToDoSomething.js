@@ -50,18 +50,19 @@ const upLoadLogger = () => {
                 console.log('开始请求数据');
             },
             (response) => {
-                console.log(response);
+                console.log('responseData', response);
                 if (response.code === 200) {
                     console.log('上传成功');
-                    ReadAndWriteFileUtil.deleteFile(); // 上传成功后删除目的文件
-                    ReadAndWriteFileUtil.mkDir();
-                    ReadAndWriteFileUtil.deleteFile(); // 上传成功后删除目的文件
-
-                    //RNCallNative.RNSendMsgToServerSuccess();
                 }
+                ReadAndWriteFileUtil.deleteFile(); // 上传成功后删除目的文件
+                ReadAndWriteFileUtil.mkDir();
+                ReadAndWriteFileUtil.deleteFile(); // 上传成功后删除目的文件
             },
             (error) => {
                 console.log('服务器连接失败', error);
+                ReadAndWriteFileUtil.deleteFile(); // 上传成功后删除目的文件
+                ReadAndWriteFileUtil.mkDir();
+                ReadAndWriteFileUtil.deleteFile(); // 上传成功后删除目的文件
             });
     }); // 拷贝文件
 
